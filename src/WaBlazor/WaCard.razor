@@ -1,0 +1,8 @@
+﻿<wa-card class="card-basic">
+    @ChildContent
+</wa-card>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

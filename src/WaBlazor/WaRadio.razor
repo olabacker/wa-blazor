@@ -3,7 +3,7 @@
 <wa-radio-group label="@Label" name="a" @bind-value="@Value" @bind-value:event="oninput">
     @foreach (var item in Items ?? [])
     {
-        <wa-radio value="@item" label="1">@ToString(item)</wa-radio>
+        <wa-radio value="@item" label="1">@ToString(item)</wa-radio><br/>
     }
 </wa-radio-group>
 

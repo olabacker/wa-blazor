@@ -4,6 +4,15 @@
         <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <PackageProjectUrl>https://github.com/olabacker/wa-blazor</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/olabacker/wa-blazor</RepositoryUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageTags>WebAwesome</PackageTags>
+        <Description>WebAwesome components wrapped in blazor</Description>
+        <Authors>Ola Bäcker</Authors>
+        <Owners>olabacker</Owners>
+        <Version>1.0.0</Version>
+        <PackageIcon>icon.png</PackageIcon>
     </PropertyGroup>
 
 
@@ -19,4 +28,7 @@
       <Folder Include="wwwroot\" />
     </ItemGroup>
 
+    <ItemGroup>
+        <None Include="icon.png" Pack="true" PackagePath=""/>
+    </ItemGroup>
 </Project>

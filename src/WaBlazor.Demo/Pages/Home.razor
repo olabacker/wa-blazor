@@ -1,0 +1,42 @@
+﻿@page "/"
+<PageTitle>Home</PageTitle>
+
+
+<h3>Button</h3>
+
+<WaButton Icon="arrow-right" ButtonColor="WaVariant.Brand" OnClick="@(() => _clickCount++)">Click me</WaButton>
+
+<p>Current count: @_clickCount</p>
+
+<h3>Checkbox</h3>
+
+<WaCheckbox @bind-Checked="_checked">Checkbox!</WaCheckbox>
+
+<p>Checkbox is: @_checked</p>
+
+<h3>Details</h3>
+
+
+<WaDetails Summary="Details?">Hello</WaDetails>
+
+<h3>Radio</h3>
+
+<WaRadio T="string" Items="@(["A","B", "C"])"></WaRadio>
+
+<h3>Qr</h3>
+
+<WaQr Value="https://www.google.com"></WaQr>
+
+<h3>Avatar</h3>
+
+<WaAvatar Image="https://www.w3schools.com/howto/img_avatar.png" Label="Avatar"></WaAvatar>
+
+<h3>Input</h3>
+
+<WaInput></WaInput>
+
+@code {
+
+    private int _clickCount = 0;
+    private bool _checked = false;
+}
