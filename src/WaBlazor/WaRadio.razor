@@ -1,0 +1,38 @@
+﻿@typeparam T
+
+<wa-radio-group label="@Label" name="a" @bind-value="@Value" @bind-value:event="oninput">
+    @foreach (var item in Items ?? [])
+    {
+        <wa-radio value="@item" label="1">@ToString(item)</wa-radio>
+    }
+</wa-radio-group>
+
+@code {
+    [Parameter]
+    public string? Label { get; set; }
+    
+    [Parameter]
+    public T[]? Items { get; set; }
+    
+    private T? _value;
+    
+    [Parameter]
+    public T? Value 
+    {
+        get => _value;
+        set
+        {
+            if (EqualityComparer<T?>.Default.Equals(_value, value)) return;
+            _value = value;
+            ValueChanged.InvokeAsync(value);
+        }
+    }
+
+    [Parameter]
+    public EventCallback<T?> ValueChanged { get; set; }
+    
+    [Parameter]
+    public Func<T, string>? ToStringFunc { get; set; }
+    
+    private string? ToString(T item) => ToStringFunc?.Invoke(item) ?? item?.ToString();
+}

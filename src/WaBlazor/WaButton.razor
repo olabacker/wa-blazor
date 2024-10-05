@@ -1,0 +1,32 @@
+﻿<wa-button style="@Style" variant="@ButtonColor.ToString().ToLower()" size="small" @onclick="@OnClick" disabled="@IsDisabled">
+    @if (Icon is not null)
+    {
+        <wa-icon slot="prefix" name="@Icon" variant="@IconType.ToString().ToLower()"></wa-icon>
+    }
+    @ChildContent
+</wa-button>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+    
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+    [Parameter]
+    public WaVariant ButtonColor { get; set; } = WaVariant.Neutral; 
+
+    // [Parameter]
+    // public FaIcon? Icon { get; set; }
+    
+    public FaType IconType { get; set; } = FaType.Solid;
+    
+    [Parameter]
+    public string? Icon { get; set; }
+    
+    [Parameter]
+    public bool IsDisabled { get; set; }
+    
+    [Parameter]
+    public string? Style { get; set; }
+}

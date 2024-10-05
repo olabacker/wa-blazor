@@ -1,0 +1,67 @@
+﻿@using Microsoft.JSInterop
+@inject IJSRuntime JS
+
+<wa-checkbox id="@_id" checked="@Checked"  >@ChildContent</wa-checkbox>
+
+<script>
+    window.addWaChangeListener = function (dotNetObj, elementId) {
+        const checkbox = document.getElementById(elementId);
+        checkbox.addEventListener('wa-change', function (event) {
+            dotNetObj.invokeMethodAsync('OnWaChange', event.target.checked);
+        });
+    };
+</script>
+
+@code {
+    private bool _checked;
+    
+    [Parameter]
+    public bool Checked
+    {
+        get => _checked;
+        set
+        {
+            Console.WriteLine(value);
+            if (_checked == value) return;
+
+            _checked = value;
+            CheckedChanged.InvokeAsync(value);
+        }
+    }
+
+    [Parameter]
+    public EventCallback<bool> CheckedChanged { get; set; }
+    
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    private string _id = Guid.CreateVersion7().ToString();
+
+    private void Okay()
+    {
+        
+    }
+
+    private void OnCheckboxChange(ChangeEventArgs e)
+    {
+        Checked = (bool)e.Value!;
+    }
+    
+    private DotNetObjectReference<WaCheckbox>? _dotNetRef;
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _dotNetRef = DotNetObjectReference.Create(this);
+            await JS.InvokeVoidAsync("addWaChangeListener", _dotNetRef, _id);
+        }
+    }
+    
+    
+    [JSInvokable]
+    public void OnWaChange(bool isChecked)
+    {
+        Checked = isChecked; // Update the checked state
+    }
+}

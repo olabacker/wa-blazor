@@ -1,0 +1,9 @@
+﻿<wa-icon family="@IconType.ToString().ToLower()" name="@Icon"></wa-icon>
+
+@code {
+    [Parameter]
+    public required string Icon { get; set; }
+    
+    [Parameter]
+    public FaType IconType { get; set; } = FaType.Solid;
+}

@@ -1,0 +1,20 @@
+﻿<wa-input @bind-value="@Text" @bind-value:event="oninput"></wa-input>
+
+@code {
+    private string? _text;
+    
+    [Parameter]
+    public string? Text
+    {
+        get => _text;
+        set
+        {
+            if (_text == value) return;
+            _text = value;
+            TextChanged.InvokeAsync(value);
+        }
+    }
+
+    [Parameter]
+    public EventCallback<string?> TextChanged { get; set; }
+}
