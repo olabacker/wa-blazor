@@ -7,6 +7,7 @@
         <PackageProjectUrl>https://github.com/olabacker/wa-blazor</PackageProjectUrl>
         <RepositoryUrl>https://github.com/olabacker/wa-blazor</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>WebAwesome</PackageTags>
         <Description>WebAwesome components wrapped in blazor</Description>
         <Authors>Ola Bäcker</Authors>
@@ -30,5 +31,6 @@
 
     <ItemGroup>
         <None Include="icon.png" Pack="true" PackagePath=""/>
+        <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
 </Project>
