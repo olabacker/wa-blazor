@@ -14,7 +14,11 @@
 
 <p>Checkbox is: @_checked</p>
 
-<h3>Details</h3>
+<h3>Switch</h3>
+<WaSwitch @bind-Checked="_switch">Switch</WaSwitch>
+<p>Switch is: @_switch</p>
+
+<h3 >Details</h3>
 
 
 <WaDetails Summary="Details?">Hello</WaDetails>
@@ -35,8 +39,62 @@
 
 <WaInput></WaInput>
 
+<h3>Icon</h3>
+
+<WaIcon Icon="plus"></WaIcon>
+<WaIcon Icon="plus" OverrideColor="#00FF00"></WaIcon>
+
+<h3>Card</h3>
+
+<WaCard>
+    <ChildContent>
+        <WaButton Icon="copy" OnClick="@(() => _clickCount++)">Copy new Guid</WaButton>
+    </ChildContent>
+</WaCard>
+
+<h3>Spinner</h3>
+
+<WaSpinner></WaSpinner>
+
+<h3>Text area</h3>
+
+<WaTextArea Label="Text!" HelpText="Help text.."></WaTextArea>
+
+<h3>Tag</h3>
+
+<WaTag Variant="WaVariant.Brand">Brand</WaTag>
+<WaTag Variant="WaVariant.Success">Success</WaTag>
+<WaTag Variant="WaVariant.Neutral">Neutral</WaTag>
+<WaTag Variant="WaVariant.Warning">Warning</WaTag>
+<WaTag Variant="WaVariant.Danger">Danger</WaTag>
+
+<h3>Relative time</h3>
+
+<WaRelativeTime Date="DateTime.Now"></WaRelativeTime>
+
+<h5>Synchronized</h5>
+<WaRelativeTime Date="DateTime.Now" Sync="true"></WaRelativeTime>
+
+<h3>Icon button</h3>
+
+<WaIconButton Icon="plus" Variant="FaType.Solid" Label="Add" OnClick="@(() => _clickCount++)"></WaIconButton>
+
+<p>Current count: @_clickCount</p>
+
+
 @code {
 
     private int _clickCount = 0;
     private bool _checked = false;
+    private bool _switch = false;
+
+    private void Callback()
+    {
+        _clickCount++;
+    }
+
+    private void Callback2()
+    {
+        _clickCount--;
+    }
 }

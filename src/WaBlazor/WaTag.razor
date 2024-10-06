@@ -1,0 +1,8 @@
+﻿<wa-tag variant="@Variant.ToString().ToLower()">@ChildContent</wa-tag>
+@code {
+    [Parameter]
+    public WaVariant Variant { get; set; } = WaVariant.Neutral;
+    
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

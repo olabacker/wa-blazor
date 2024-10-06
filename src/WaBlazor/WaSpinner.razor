@@ -1,0 +1,8 @@
+﻿<wa-spinner style="@GetStyle()"></wa-spinner>
+
+@code {
+    [Parameter]
+    public string? OverrideColor { get; set; }
+    
+    private string GetStyle() =>  OverrideColor is not null ? $" --indicator-color: {OverrideColor}" : string.Empty;
+}

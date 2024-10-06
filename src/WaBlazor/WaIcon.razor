@@ -1,4 +1,6 @@
-﻿<wa-icon family="@IconType.ToString().ToLower()" name="@Icon"></wa-icon>
+﻿<div style="@GetStyle()">
+    <wa-icon family="@IconType.ToString().ToLower()" name="@Icon"></wa-icon>
+</div>
 
 @code {
     [Parameter]
@@ -6,4 +8,10 @@
     
     [Parameter]
     public FaType IconType { get; set; } = FaType.Solid;
+    
+    [Parameter]
+    public string? OverrideColor { get; set; }
+    
+    
+    public string GetStyle() =>  OverrideColor is not null ? $"color: {OverrideColor}" : string.Empty;
 }

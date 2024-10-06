@@ -1,0 +1,15 @@
+﻿@using System.Globalization
+
+<wa-relative-time date="@Date.ToString(CultureInfo.CurrentCulture)" sync="@Sync"></wa-relative-time>
+
+
+@code {
+    [Parameter]
+    public required DateTime Date { get; set; }
+    
+    /// <summary>
+    /// If true, the component will update the relative time every minute.
+    /// </summary>
+    [Parameter]
+    public bool Sync { get; set; } = false;
+}

@@ -1,0 +1,26 @@
+﻿<wa-icon-button style="@Style" variant="@Variant.ToString().ToLower()" label="@Label" name="@Icon" size="small" @onclick="@OnClick" disabled="@IsDisabled">
+    @ChildContent
+</wa-icon-button>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+    
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+    [Parameter]
+    public FaType Variant { get; set; } = FaType.Solid; 
+    
+    [Parameter]
+    public required string Icon { get; set; }
+    
+    [Parameter]
+    public string? Label { get; set; }
+    
+    [Parameter]
+    public bool IsDisabled { get; set; }
+    
+    [Parameter]
+    public string? Style { get; set; }
+}
