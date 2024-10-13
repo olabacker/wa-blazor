@@ -6,7 +6,7 @@ public enum FaType
     Regular,
     Light,
     Duotone,
-    Brand
+    Brands
 }
 
 public enum WaVariant
