@@ -1,0 +1,25 @@
+﻿<wa-progress-ring value="@Value" style="@GetStyle()" label="@Label"></wa-progress-ring>
+
+@code {
+    [Parameter]
+    public int Value { get; set; } = 0;
+    
+    [Parameter]
+    public string? TrackColor { get; set; }
+    
+    [Parameter]
+    public string? IndicatorColor { get; set; }
+    
+    [Parameter]
+    public string? TrackWidth { get; set; }
+    
+    [Parameter]
+    public string? Label { get; set; }
+    
+    
+    private string GetStyle() => StyleBuilder.Empty()
+        .AddStyle("--indicator-color", IndicatorColor, IndicatorColor is not null)
+        .AddStyle("--track-color", TrackColor, TrackColor is not null)
+        .AddStyle("--track-width", TrackWidth, TrackWidth is not null)
+        .Build();
+}

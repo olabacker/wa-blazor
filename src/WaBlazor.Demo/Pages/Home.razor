@@ -45,7 +45,7 @@
 <WaIcon Icon="plus" OverrideColor="#00FF00"></WaIcon>
 <WaIcon Icon="plus" OverrideColor="#00FF00"></WaIcon>
 <WaIcon Icon="sparkles" OverrideColor="yellow"></WaIcon>
-<WaIcon Icon="sparkles" OverrideColor="--wa-color-text-link"></WaIcon>
+<WaIcon IconType="FaType.Brands" Icon="docker" OverrideColor=""></WaIcon>
 <h3>Card</h3>
 
 <WaCard>
@@ -82,6 +82,10 @@
 <WaIconButton Icon="plus" Variant="FaType.Solid" Label="Add" OnClick="@(() => _clickCount++)"></WaIconButton>
 
 <p>Current count: @_clickCount</p>
+
+<h3>Progress ring</h3>
+
+<WaProgressRing Value="50"></WaProgressRing>
 
 
 @code {
