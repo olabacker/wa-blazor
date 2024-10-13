@@ -1,8 +1,16 @@
-﻿<wa-card class="card-basic">
+﻿<wa-card class="card-basic" style="@GetStyle()">
     @ChildContent
 </wa-card>
 
 @code {
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+    
+    [Parameter]
+    public string? Style { get; set; }
+    
+    
+    private string GetStyle() => StyleBuilder.Empty()
+        .AddStyle(Style)
+        .Build();
 }

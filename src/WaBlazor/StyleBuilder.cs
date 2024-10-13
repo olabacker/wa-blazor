@@ -16,7 +16,7 @@ public class StyleBuilder
 
     public StyleBuilder(string prop, string value) => _stringBuffer = $"{prop}:{value};";
 
-    public StyleBuilder AddStyle(string style) => !string.IsNullOrWhiteSpace(style) ? AddRaw($"{style};") : this;
+    public StyleBuilder AddStyle(string? style) => !string.IsNullOrWhiteSpace(style) ? AddRaw($"{style};") : this;
 
     private StyleBuilder AddRaw(string? style)
     {
