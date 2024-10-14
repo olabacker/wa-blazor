@@ -1,0 +1,20 @@
+﻿<wa-progress-bar value="@Value" style="@GetStyle()" label="@Label" indeterminate="@Indeterminate"></wa-progress-bar>
+
+@code {
+    [Parameter]
+    public int Value { get; set; } = 0;
+    
+    [Parameter]
+    public string? Height { get; set; }
+    
+    [Parameter]
+    public string? Label { get; set; }
+    
+    [Parameter]
+    public bool Indeterminate { get; set; }
+    
+    
+    private string GetStyle() => StyleBuilder.Empty()
+        .AddStyle("--height", Height, Height is not null)
+        .Build();
+}

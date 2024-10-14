@@ -14,6 +14,9 @@
     public string? TrackWidth { get; set; }
     
     [Parameter]
+    public string? Size { get; set; }
+    
+    [Parameter]
     public string? Label { get; set; }
     
     
@@ -21,5 +24,6 @@
         .AddStyle("--indicator-color", IndicatorColor, IndicatorColor is not null)
         .AddStyle("--track-color", TrackColor, TrackColor is not null)
         .AddStyle("--track-width", TrackWidth, TrackWidth is not null)
+        .AddStyle("--size", Size, Size is not null)
         .Build();
 }
