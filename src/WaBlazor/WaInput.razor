@@ -1,20 +1,43 @@
-﻿<wa-input @bind-value="@Text" @bind-value:event="oninput"></wa-input>
+﻿@using Microsoft.JSInterop
+@inject IJSRuntime JS
+
+<wa-input id="@_id" @bind-value="@Text" @bind-value:event="oninput"></wa-input>
+
+<script>
+    window.addWaChangeListener = function (dotNetObj, elementId) {
+        const checkbox = document.getElementById(elementId);
+        checkbox.addEventListener('wa-change', function (event) {
+            dotNetObj.invokeMethodAsync('OnWaChange', event.target.value);
+        });
+    };
+</script>
 
 @code {
-    private string? _text;
     
     [Parameter]
-    public string? Text
-    {
-        get => _text;
-        set
-        {
-            if (_text == value) return;
-            _text = value;
-            TextChanged.InvokeAsync(value);
-        }
-    }
-
+    public string? Text { get; set; }
+    
     [Parameter]
     public EventCallback<string?> TextChanged { get; set; }
+    
+    private string _id = Guid.NewGuid().ToString();
+    
+    private DotNetObjectReference<WaInput>? _dotNetRef;
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _dotNetRef = DotNetObjectReference.Create(this);
+            await JS.InvokeVoidAsync("addWaChangeListener", _dotNetRef, _id);
+        }
+    }
+    
+    [JSInvokable]
+    public void OnWaChange(string text)
+    {
+        TextChanged.InvokeAsync(text);
+    }
+
+
 }

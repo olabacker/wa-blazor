@@ -4,7 +4,7 @@
 <wa-switch id="@_id" checked="@Checked"  >@ChildContent</wa-switch>
 
 <script>
-    window.addWaChangeListener = function (dotNetObj, elementId) {
+    window.addWaChangeListenerSwitch = function (dotNetObj, elementId) {
         const checkbox = document.getElementById(elementId);
         checkbox.addEventListener('wa-change', function (event) {
             dotNetObj.invokeMethodAsync('OnWaChange', event.target.checked);
@@ -13,21 +13,8 @@
 </script>
 
 @code {
-    private bool _checked;
-    
     [Parameter]
-    public bool Checked
-    {
-        get => _checked;
-        set
-        {
-            Console.WriteLine(value);
-            if (_checked == value) return;
-
-            _checked = value;
-            CheckedChanged.InvokeAsync(value);
-        }
-    }
+    public bool Checked { get; set; }
 
     [Parameter]
     public EventCallback<bool> CheckedChanged { get; set; }
@@ -37,16 +24,6 @@
 
     private string _id = Guid.NewGuid().ToString();
 
-    private void Okay()
-    {
-        
-    }
-
-    private void OnCheckboxChange(ChangeEventArgs e)
-    {
-        Checked = (bool)e.Value!;
-    }
-    
     private DotNetObjectReference<WaSwitch>? _dotNetRef;
     
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -54,14 +31,14 @@
         if (firstRender)
         {
             _dotNetRef = DotNetObjectReference.Create(this);
-            await JS.InvokeVoidAsync("addWaChangeListener", _dotNetRef, _id);
+            await JS.InvokeVoidAsync("addWaChangeListenerSwitch", _dotNetRef, _id);
         }
     }
-    
     
     [JSInvokable]
     public void OnWaChange(bool isChecked)
     {
-        Checked = isChecked; // Update the checked state
+        Console.WriteLine("wa-switch: OnWaChange" + isChecked);
+        CheckedChanged.InvokeAsync(isChecked);
     }
 }

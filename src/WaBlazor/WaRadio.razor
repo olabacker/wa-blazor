@@ -25,6 +25,7 @@
             if (EqualityComparer<T?>.Default.Equals(_value, value)) return;
             _value = value;
             ValueChanged.InvokeAsync(value);
+            
         }
     }
 

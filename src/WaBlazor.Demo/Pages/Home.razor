@@ -37,7 +37,9 @@
 
 <h3>Input</h3>
 
-<WaInput></WaInput>
+<WaInput @bind-Text="@_text"></WaInput>
+
+<p>@_text</p>
 
 <h3>Icon</h3>
 
@@ -93,6 +95,8 @@
     private int _clickCount = 0;
     private bool _checked = false;
     private bool _switch = false;
+    
+    private string _text = "Hello";
 
     private void Callback()
     {
