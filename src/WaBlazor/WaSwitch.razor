@@ -35,7 +35,7 @@
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
-    private string _id = Guid.CreateVersion7().ToString();
+    private string _id = Guid.NewGuid().ToString();
 
     private void Okay()
     {
